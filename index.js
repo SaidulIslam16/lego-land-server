@@ -30,6 +30,7 @@ async function run() {
         await client.connect();
 
         const toyCollection = client.db('legoLand').collection('toys');
+        const categoryCollection = client.db('legoLand').collection('category');
 
         // Api for adding single toy entry
         app.post('/toys', async (req, res) => {
@@ -39,12 +40,20 @@ async function run() {
             res.send(result);
         })
 
+        // Api for getting Categories
+        app.get('/categories', async (req, res) => {
+            const categories = categoryCollection.find();
+            const result = await categories.toArray();
+            res.send(result);
+        })
+
         // Api for getting All Toys
         app.get('/toys', async (req, res) => {
             const toys = toyCollection.find();
             const result = await toys.toArray();
             res.send(result);
         })
+
 
 
         // Send a ping to confirm a successful connection
