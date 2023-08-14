@@ -32,14 +32,6 @@ async function run() {
         const toyCollection = client.db('legoLand').collection('toys');
         const categoryCollection = client.db('legoLand').collection('category');
 
-        // Api for adding single toy entry
-        app.post('/toys', async (req, res) => {
-            const toy = req.body;
-            // console.log(toy);
-            const result = await toyCollection.insertOne(toy);
-            res.send(result);
-        })
-
         // Api for getting Categories
         app.get('/categories', async (req, res) => {
             const categories = categoryCollection.find();
@@ -47,18 +39,36 @@ async function run() {
             res.send(result);
         })
 
+        // Api for getting All Toys
+        app.get('/toys', async (req, res) => {
+
+            let query = {};
+            if (req.query?.email) {
+                query = { email: req.query.email }
+            }
+
+            const toys = toyCollection.find(query);
+            const result = await toys.toArray();
+            res.send(result);
+        })
+
+
         // Signle Product API
         app.get('/toys/:id', async (req, res) => {
             const id = req.params.id;
+            console.log(id);
             const query = { _id: new ObjectId(id) }
             const result = await toyCollection.findOne(query);
             res.send(result)
         })
 
-        // Api for getting All Toys
-        app.get('/toys', async (req, res) => {
-            const toys = toyCollection.find();
-            const result = await toys.toArray();
+
+
+        // Api for adding single toy entry
+        app.post('/toys', async (req, res) => {
+            const toy = req.body;
+            // console.log(toy);
+            const result = await toyCollection.insertOne(toy);
             res.send(result);
         })
 
