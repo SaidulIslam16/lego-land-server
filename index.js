@@ -30,6 +30,7 @@ async function run() {
         await client.connect();
 
         const toyCollection = client.db('legoLand').collection('toys');
+
         // Api for adding single toy entry
         app.post('/toys', async (req, res) => {
             const toy = req.body;
@@ -37,6 +38,15 @@ async function run() {
             const result = await toyCollection.insertOne(toy);
             res.send(result);
         })
+
+        // Api for getting All Toys
+        app.get('/toys', async (req, res) => {
+            const toys = toyCollection.find();
+            const result = await toys.toArray();
+            res.send(result);
+        })
+
+
         // Send a ping to confirm a successful connection
         await client.db("admin").command({ ping: 1 });
         console.log("Pinged your deployment. You successfully connected to MongoDB!");
