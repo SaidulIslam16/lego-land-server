@@ -56,19 +56,40 @@ async function run() {
         // Signle Product API
         app.get('/toys/:id', async (req, res) => {
             const id = req.params.id;
-            console.log(id);
             const query = { _id: new ObjectId(id) }
             const result = await toyCollection.findOne(query);
             res.send(result)
         })
 
 
+        // Update API
+        app.patch('/toys/:id', async (req, res) => {
+            const id = req.params.id;
+
+            const updatedToy = {
+                $set: req.body
+            }
+            // console.log(updatedToy);
+            const filter = { _id: new ObjectId(id) };
+            const options = { upsert: true };
+
+            const result = await toyCollection.updateOne(filter, updatedToy, options)
+            res.send(result);
+        })
 
         // Api for adding single toy entry
         app.post('/toys', async (req, res) => {
             const toy = req.body;
             // console.log(toy);
             const result = await toyCollection.insertOne(toy);
+            res.send(result);
+        })
+
+        // Delete API
+        app.delete('/toys/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: new ObjectId(id) }
+            const result = await toyCollection.deleteOne(query);
             res.send(result);
         })
 
