@@ -52,6 +52,59 @@ async function run() {
             res.send(result);
         })
 
+        // Car subcategory API
+        app.get('/toys/categories/car', async (req, res) => {
+            let subCategory = "car"
+            const filter = { subCategory: subCategory };
+            console.log(filter);
+            const result = await toyCollection.find(filter).toArray();
+            res.send(result);
+        })
+
+        // Marvel subcategory API
+        app.get('/toys/categories/marvel', async (req, res) => {
+            let subCategory = "marvel"
+            const filter = { subCategory: subCategory };
+            console.log(filter);
+            const result = await toyCollection.find(filter).toArray();
+            res.send(result);
+        })
+
+        // Marvel subcategory API
+        app.get('/toys/categories/architecture', async (req, res) => {
+            let subCategory = "architecture"
+            const filter = { subCategory: subCategory };
+            console.log(filter);
+            const result = await toyCollection.find(filter).toArray();
+            res.send(result);
+        })
+
+        // Minecraft subcategory API
+        app.get('/toys/categories/minecraft', async (req, res) => {
+            let subCategory = "minecraft"
+            const filter = { subCategory: subCategory };
+            console.log(filter);
+            const result = await toyCollection.find(filter).toArray();
+            res.send(result);
+        })
+
+        // Sports subcategory API
+        app.get('/toys/categories/sports', async (req, res) => {
+            let subCategory = "sports"
+            const filter = { subCategory: subCategory };
+            console.log(filter);
+            const result = await toyCollection.find(filter).toArray();
+            res.send(result);
+        })
+
+        // City subcategory API
+        app.get('/toys/categories/city', async (req, res) => {
+            let subCategory = "city"
+            const filter = { subCategory: subCategory };
+            console.log(filter);
+            const result = await toyCollection.find(filter).toArray();
+            res.send(result);
+        })
 
         // Signle Product API
         app.get('/toys/:id', async (req, res) => {
@@ -60,6 +113,8 @@ async function run() {
             const result = await toyCollection.findOne(query);
             res.send(result)
         })
+
+
 
 
         // Update API
