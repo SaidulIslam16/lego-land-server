@@ -56,7 +56,6 @@ async function run() {
         app.get('/toys/categories/car', async (req, res) => {
             let subCategory = "car"
             const filter = { subCategory: subCategory };
-            console.log(filter);
             const result = await toyCollection.find(filter).toArray();
             res.send(result);
         })
@@ -65,7 +64,6 @@ async function run() {
         app.get('/toys/categories/marvel', async (req, res) => {
             let subCategory = "marvel"
             const filter = { subCategory: subCategory };
-            console.log(filter);
             const result = await toyCollection.find(filter).toArray();
             res.send(result);
         })
@@ -74,7 +72,6 @@ async function run() {
         app.get('/toys/categories/architecture', async (req, res) => {
             let subCategory = "architecture"
             const filter = { subCategory: subCategory };
-            console.log(filter);
             const result = await toyCollection.find(filter).toArray();
             res.send(result);
         })
@@ -83,7 +80,6 @@ async function run() {
         app.get('/toys/categories/minecraft', async (req, res) => {
             let subCategory = "minecraft"
             const filter = { subCategory: subCategory };
-            console.log(filter);
             const result = await toyCollection.find(filter).toArray();
             res.send(result);
         })
@@ -92,7 +88,6 @@ async function run() {
         app.get('/toys/categories/sports', async (req, res) => {
             let subCategory = "sports"
             const filter = { subCategory: subCategory };
-            console.log(filter);
             const result = await toyCollection.find(filter).toArray();
             res.send(result);
         })
@@ -101,7 +96,6 @@ async function run() {
         app.get('/toys/categories/city', async (req, res) => {
             let subCategory = "city"
             const filter = { subCategory: subCategory };
-            console.log(filter);
             const result = await toyCollection.find(filter).toArray();
             res.send(result);
         })
